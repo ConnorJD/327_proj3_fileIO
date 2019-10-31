@@ -14,8 +14,9 @@ using namespace std;
 int KP_FileIO::getFileContents(const std::string &filename, std::string &contents)
 {
 	ifstream stream;
-	stream.open(filename, ios::in);
+	stream.open(filename.c_str(), ios::in);
 	if (!stream.is_open()) {
+		stream.close();
 		return COULD_NOT_OPEN_FILE_TO_READ;
 	}
 	std:string line;
@@ -29,7 +30,8 @@ int KP_FileIO::getFileContents(const std::string &filename, std::string &content
 
 int KP_FileIO::writeVectortoFile(const std::string filename,std::vector<std::string> &myEntryVector)
 {
-	ofstream outputstream(filename);
+	ofstream outputstream;
+	outputstream.open(filename.c_str());
 	if (!outputstream.is_open()) {
 		return COULD_NOT_OPEN_FILE_TO_WRITE;
 	}
