@@ -33,6 +33,7 @@ int KP_FileIO::writeVectortoFile(const std::string filename,std::vector<std::str
 	ofstream outputstream;
 	outputstream.open(filename.c_str());
 	if (!outputstream.is_open()) {
+		outputstream.close();
 		return COULD_NOT_OPEN_FILE_TO_WRITE;
 	}
 	for (int i = 0 ; i < myEntryVector.size() ; i++) {
